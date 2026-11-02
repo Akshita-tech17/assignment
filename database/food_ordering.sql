@@ -1,0 +1,183 @@
+ÿþ-- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+--
+-- Host: localhost    Database: food_ordering
+-- ------------------------------------------------------
+-- Server version	10.4.32-MariaDB
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cart`
+--
+
+DROP TABLE IF EXISTS `cart`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11NOT NULL,
+  `menu_item_id` int(11) NOT NULL,
+  `quantity` int(11NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`,`menu_item_id`),
+  KEY `menu_item_id` (`menu_item_id`),
+  CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`REFERENCES `users` (`id`ON DELETE CASCADE,
+  CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`menu_item_id`) REFERENCES `menu_items` (`id`ON DELETE CASCADE
+ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cart`
+--
+
+LOCK TABLES `cart` WRITE;
+/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+INSERT INTO `cart` VALUES (18,3,1,2,'2026-10-24 03:55:47'),(30,5,1,1,'2026-10-24 06:26:31'),(31,5,15,1,'2026-10-24 06:26:36'),(42,15,7,1,'2026-11-02 15:31:40'),(43,15,18,1,'2026-11-02 15:31:46');
+/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `menu_items`
+--
+
+DROP TABLE IF EXISTS `menu_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `menu_items` (
+  `id` int(11NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2NOT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `category` varchar(50DEFAULT NULL,
+  `is_available` tinyint(1DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `menu_items`
+--
+
+LOCK TABLES `menu_items` WRITE;
+/*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
+INSERT INTO `menu_items` VALUES (1,'Cheese Burger','Crispy veg patty with melted cheese and special sauce',129.00,'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600','Burgers',1,'2026-10-23 18:06:28'),(2,'Paneer Tikka Burger','Spicy paneer tikka with fresh vegetables',149.00,'https://images.unsplash.com/photo-1520072959219-c595dc870360?w=600','Burgers',1,'2026-10-23 18:06:28'),(3,'Farmhouse Pizza','Pizza topped with capsicum, onion and mushrooms',249.00,'https://images.unsplash.com/photo-1579751626657-72bc17010498?w=600','Pizza',1,'2026-10-23 18:06:28'),(4,'Paneer Tikka Pizza','Smoky paneer tikka with mozzarella cheese',279.00,'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600','Pizza',1,'2026-10-23 18:06:28'),(5,'White Sauce Pasta','Creamy pasta with herbs and vegetables',179.00,'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600','Pasta',1,'2026-10-23 18:06:28'),(6,'Red Sauce Pasta','Pasta tossed in tangy tomato sauce',169.00,'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=600','Pasta',1,'2026-10-23 18:06:28'),(7,'Veg Hakka Noodles','Stir-fried noodles with crunchy vegetables',139.00,'https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600','Chinese',1,'2026-10-23 18:06:28'),(8,'Veg Manchurian','Vegetable balls in tangy Indo-Chinese gravy',169.00,'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=600','Chinese',1,'2026-10-23 18:06:28'),(9,'Chilli Paneer','Paneer tossed with peppers and spicy sauce',199.00,'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=600','Chinese',1,'2026-10-23 18:06:28'),(10,'Paneer Butter Masala','Paneer in rich tomato and butter gravy',229.00,'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=600','Indian',1,'2026-10-23 18:06:28'),(11,'Chole Bhature','Spiced chickpeas served with fluffy bhature',149.00,'https://images.unsplash.com/photo-1626132647523-66f5bf380027?w=600','Indian',1,'2026-10-23 18:06:28'),(12,'Veg Biryani','Aromatic basmati rice with vegetables and spices',179.00,'https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600','Indian',1,'2026-10-23 18:06:28'),(13,'Garlic Naan','Soft naan topped with garlic and herbs',59.00,'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=600','Indian',1,'2026-10-23 18:06:28'),(14,'Plain Dosa','Golden crispy dosa with coconut chutney',79.00,'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=600','South Indian',1,'2026-10-23 18:06:28'),(15,'Idli Sambar','Steamed idlis served with sambar and chutney',79.00,'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600','South Indian',1,'2026-10-23 18:06:28'),(16,'Veg Momos','Steamed dumplings filled with fresh vegetables',99.00,'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600','Snacks',1,'2026-10-23 18:06:28'),(17,'French Fries','Crispy golden potato fries with seasoning',79.00,'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600','Snacks',1,'2026-10-23 18:06:28'),(18,'Chocolate Brownie','Rich chocolate brownie for dessert lovers',109.00,'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600','Desserts',1,'2026-10-23 18:06:28'),(19,'Cold Coffee','Chilled creamy coffee topped with foam',99.00,'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600','Drinks',1,'2026-10-23 18:06:28'),(21,'pasta','chatpta pasta',60.00,'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600',NULL,1,'2026-10-24 04:13:05'),(22,'maggie','cheese maggie',70.00,'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80','Snacks',1,'2026-10-24 06:29:18'),(23,'Masala Maggie','Spicy masala noodles with Indian herbs',60.00,'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=800&q=80','Snacks',1,'2026-10-29 10:09:34'),(24,'Veg Sandwich','Fresh vegetable sandwich with creamy spread',89.00,'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=800&q=80','Snacks',1,'2026-10-29 10:09:34'),(25,'Chocolate Shake','Creamy chocolate milkshake',119.00,'https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80','Drinks',1,'2026-10-29 10:09:34'),(26,'Margherita Pizza','Classic pizza with tomato sauce and mozzarella',199.00,'https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80','Pizza',1,'2026-10-29 10:09:34'),(27,'Garlic Bread','Toasted bread with garlic butter and herbs',99.00,'https://images.unsplash.com/photo-1619531040576-f9416740661d?auto=format&fit=crop&w=800&q=80','Snacks',1,'2026-10-29 10:09:34');
+/*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` int(11) NOT NULL,
+  `menu_item_id` int(11NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_id` (`order_id`),
+  KEY `menu_item_id` (`menu_item_id`),
+  CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`REFERENCES `orders` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`menu_item_id`) REFERENCES `menu_items` (`id`ON DELETE CASCADE
+ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `order_items`
+--
+
+LOCK TABLES `order_items` WRITE;
+/*!40000 ALTER TABLE `order_items` DISABLE KEYS */;
+INSERT INTO `order_items` VALUES (1,1,2,1,149.00),(2,1,3,4,249.00),(3,1,6,3,169.00),(4,1,1,1,129.00),(5,2,4,3,279.00),(6,3,5,2,179.00),(7,3,8,1,169.00),(8,4,2,1,149.00),(9,4,3,1,249.00),(10,5,1,4,129.00),(11,5,21,1,60.00),(12,6,1,1,129.00),(13,6,3,1,249.00),(14,6,2,1,149.00),(15,6,4,1,279.00),(16,7,1,3,129.00),(17,8,1,1,129.00),(18,8,4,1,279.00),(19,9,9,1,199.00),(20,9,19,1,99.00),(21,9,2,1,149.00),(22,10,9,1,199.00),(25,12,1,1,129.00),(26,13,1,1,129.00),(27,14,1,1,129.00);
+/*!40000 ALTER TABLE `order_items` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `status` varchar(30NOT NULL DEFAULT 'Placed',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `delivery_name` varchar(150) DEFAULT NULL,
+  `delivery_phone` varchar(15DEFAULT NULL,
+  `delivery_address` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`REFERENCES `users` (`id`ON DELETE CASCADE
+ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,2,1781.00,'Confirmed','2026-10-23 18:36:29',NULL,NULL,NULL),(2,2,837.00,'Confirmed','2026-10-23 18:44:55',NULL,NULL,NULL),(3,3,527.00,'Cancelled','2026-10-24 03:15:00',NULL,NULL,NULL),(4,3,398.00,'Preparing','2026-10-24 03:28:59',NULL,NULL,NULL),(5,2,576.00,'Cancelled','2026-10-24 04:13:54',NULL,NULL,NULL),(6,2,806.00,'Cancelled','2026-10-24 04:23:51','kiran jat','6377868805','iiit kota girls hostel'),(7,2,387.00,'Placed','2026-10-24 04:58:05','kiran jat','6377868805','iiit kota girls hostel'),(8,2,408.00,'Cancelled','2026-10-24 05:07:28','kiran jat','6377868805','iiit kota girls hostel'),(9,5,447.00,'Placed','2026-10-24 05:37:43','akhsita','7789776312','harishpura'),(10,2,199.00,'Placed','2026-10-24 06:28:22','kiran jat','6377868805','iiit kota girls hostel'),(12,2,129.00,'Placed','2026-10-24 18:34:51','kiran jat','6377868805','iiit kota girls hostel'),(13,2,129.00,'Cancelled','2026-10-24 18:38:42','kiran jat','6377868805','iiit kota girls hostel'),(14,2,129.00,'Placed','2026-10-24 18:53:44','kiran jat','6377868805','iiit kota girls hostel');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(150NOT NULL,
+  `password` varchar(255NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `role` enum('customer','admin') NOT NULL DEFAULT 'customer',
+  `phone` varchar(15DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `is_active` tinyint(1NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Test User','test@example.com','temporary_test','2026-10-23 17:49:52','customer',NULL,NULL,1),(2,'kiran jat','jatkiran777@gmail.com','$2y$10$6VsJraI8uUIPhlbMrr683eg3guuBeRAsh2FCAbpfEhBjzWIjPMlyO','2026-10-23 17:55:28','admin','6377868805','iiit kota girls hostel',1),(3,'Kiran Jat','jatinside7240@gmail.com','$2y$10$G2iRZkZjKBkGSbavbY7IAOS0kVz797hR0ML41QBsrxpAcxU4tDtv2','2026-10-24 03:09:21','customer',NULL,NULL,0),(5,'akhsita','akshi123@gmail.com','$2y$10$wyYW9zzxthfq.Ods92E2g.WD./.pgqnwSVItbbw7E2RWtWgo22cPy','2026-10-24 05:35:56','customer','7789776312','harishpura',1),(9,'Sakshi','sakshi123@gmail.com','$2y$12$CL/my/aNA1DCf5GpI4pIOeRl20bx0/cU4vzukt9Qvf6q8.Iw0f8Pu','2026-10-30 05:34:15','admin',NULL,NULL,1),(10,'Anubha','anubha123@gmail.com','$2y$12$ZK/S/ADu2ZSlvm94T1JNB.zmzZ8zAWkxTSvLN.k/02bzBH216UUZG','2026-10-30 05:34:15','admin',NULL,NULL,1),(11,'Vershini','vershini123@gmail.com','$2y$12$TJ2Cl5eCSY02nBCHt2LtZuEox/cSPZMzf/DrznKPIJS2755y3ZryS','2026-10-30 05:34:15','admin',NULL,NULL,1),(12,'Akshita','akshita123@gmail.com','$2y$12$cyEFK3uYCeJU4Spz4Rc0c.78/t4GCJYfCpCMy9m6ld./w3ZIbSdtu','2026-10-30 05:34:15','admin',NULL,NULL,1),(13,'Foodies Admin','admin@foodies.com','$2y$10$aNjnTnHsiyvMH3RZd0XDM.xcZF/jQOeq/E7NbXHtZe.PcEoqzfewO','2026-11-02 15:26:01','admin',NULL,NULL,1),(14,'Foodie Customer','user@foodies.com','$2y$10$sQW0aSOBwv8AJRQk4CrfuOsLPgUGHQ1/AllR38euCRf8jQ0UmTK2u','2026-11-02 15:26:01','customer','9876543210','123 Food Street, City',1),(15,'Akshita Singh','akshitasingh239902@gmail.com','$2y$10$q9NtM7jfJa.QQS8SgYxemOSsxS39cEC79b4EGbwuPTnk2zq5bdFJG','2026-11-02 15:30:17','customer','07535831781','kota',1);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-11-02 23:07:14
