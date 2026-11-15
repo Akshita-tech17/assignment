@@ -1,5 +1,11 @@
 <?php
-require_once "../config/admin_auth.php";
+$authFile = __DIR__ . '/../config/admin_auth.php';
+
+if (!file_exists($authFile)) {
+    $authFile = __DIR__ . '/../../config/admin_auth.php';
+}
+
+require_once $authFile;
 
 function e($value): string
 {
